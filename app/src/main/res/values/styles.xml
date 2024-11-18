@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Tema" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="colorPrimary">#BB9457</item>
+        <item name="colorPrimaryDark">#500509</item>
+        <item name="colorAccent">#FFC107</item>
+        <item name="android:textColor">#FFC107</item>
+        <item name="android:buttonStyle">@style/CustomButton</item>
+        <item name="android:switchStyle">@style/CustomSwitch</item>
+    </style>
+
+
+    <style name="CustomTextView">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+
+    <style name="CustomButton" parent="Widget.AppCompat.Button">
+        <item name="android:backgroundTint">#BB9457</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+
+    <style name="CustomSwitch" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:thumbTint">#BB9457</item>
+        <item name="android:trackTint">#FFC107</item>
+    </style>
+
+
+    <style name="RecyclerViewItemStyle">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:padding">16dp</item>
+    </style>
+</resources>
