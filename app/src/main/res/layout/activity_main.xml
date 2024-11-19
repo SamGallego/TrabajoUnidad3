@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#500509"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -41,7 +40,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="4dp"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/pedir"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -53,7 +52,6 @@
         android:layout_marginBottom="8dp"
         android:height="48dp"
         android:text="@string/iva"
-        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -63,7 +61,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="#BB9457"
         android:text="@string/pedido"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -74,21 +71,19 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="#BB9457"
         android:text="@string/limpiar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/pedir" />
 
     <Spinner
-        android:id="@+id/language_spinner"
+        android:id="@+id/languages"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:entries="@array/languages_array"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/limpiar"
-        app:layout_constraintStart_toEndOf="@+id/iva"
-        />
+        app:layout_constraintStart_toEndOf="@+id/iva" />
+    <!-- android:entries="@array/languages" -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

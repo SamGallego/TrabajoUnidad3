@@ -7,7 +7,7 @@ public class Plato {
     private String descripcion;
     private String alergenos;
     private double precio;
-    private double precioOriginal; // Precio original del plato
+    private double precioOriginal;
 
     public Plato(int foto, String nombre, String descripcion, String alergenos, double precio) {
         this.foto = foto;
@@ -15,7 +15,7 @@ public class Plato {
         this.descripcion = descripcion;
         this.alergenos = alergenos;
         this.precio = precio;
-        this.precioOriginal = precio; // Almacena el precio original al crear el objeto
+        this.precioOriginal = precio;
     }
 
     public int getFoto() {

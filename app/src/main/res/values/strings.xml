@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">TrabajoUnidad3</string>
+    <string name="app_name" translatable="false">TrabajoUnidad3</string>
     <string name="iva">IVA</string>
     <string name="pedido">Pedir</string>
     <string name="limpiar">Limpiar</string>
 
-    <string-array name="languages_array">
+    <string-array name="languages">
         <item>English</item>
         <item>Español</item>
-        <item>Gallego</item>
+        <item>Galego</item>
     </string-array>
 
 </resources>

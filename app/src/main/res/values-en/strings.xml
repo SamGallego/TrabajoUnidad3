@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TrabajoUnidad3</string>
+    <string name="iva">TAX</string>
+    <string name="pedido">Commit</string>
+    <string name="limpiar">Clear</string>
+</resources>
