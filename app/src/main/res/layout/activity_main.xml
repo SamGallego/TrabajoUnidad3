@@ -40,7 +40,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="4dp"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/pedir"
         app:layout_constraintEnd_toEndOf="parent" />
 

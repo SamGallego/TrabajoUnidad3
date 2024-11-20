@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
-// AdaptadorPlato.java
 public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.PlatoViewHolder> {
 
     private ArrayList<Plato> coleccion;
