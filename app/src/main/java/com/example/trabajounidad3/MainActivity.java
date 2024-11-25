@@ -65,16 +65,16 @@ public class MainActivity extends AppCompatActivity {
                 new Plato(R.drawable.migas_extremenas, "Migas Extremeñas", "Pan desmigado con chorizo y panceta", "Gluten", 8.0),
                 new Plato(R.drawable.rabo_toro, "Rabo de Toro", "Estofado de rabo de toro al vino tinto", "Ninguno", 14.0),
                 new Plato(R.drawable.lentejas_estofadas, "Lentejas Estofadas", "Lentejas con chorizo y verduras", "Gluten", 7.0),
-                new Plato(R.drawable.pulpo, "Bacalao al Pil Pil", "Bacalao con aceite de oliva y ajo", "Pescado", 15.0),
-                new Plato(R.drawable.pulpo, "Gambas al Ajillo", "Gambas salteadas con ajo y guindilla", "Mariscos", 11.0),
-                new Plato(R.drawable.pulpo, "Churros con Chocolate", "Churros fritos con chocolate caliente", "Gluten", 6.0),
-                new Plato(R.drawable.pulpo, "Flan de Huevo", "Flan de huevo con caramelo", "Lactosa, Huevos", 4.0),
-                new Plato(R.drawable.pulpo, "Tarta de Santiago", "Tarta de almendra típica gallega", "Frutos Secos, Gluten", 5.0),
-                new Plato(R.drawable.pulpo, "Crema Catalana", "Postre de crema con azúcar caramelizado", "Lactosa, Huevos", 5.0),
-                new Plato(R.drawable.pulpo, "Filete de Ternera", "Filete de ternera a la plancha con patatas", "Ninguno", 14.0),
-                new Plato(R.drawable.pulpo, "Salmón a la Plancha", "Salmón con verduras salteadas", "Pescado", 13.0),
-                new Plato(R.drawable.pulpo, "Canelones", "Canelones rellenos de carne y bechamel", "Gluten, Lactosa", 10.0),
-                new Plato(R.drawable.pulpo, "Empanada Gallega", "Empanada rellena de atún y tomate", "Gluten, Pescado", 7.0)
+                new Plato(R.drawable.bacalao_al_pil_pl, "Bacalao al Pil Pil", "Bacalao con aceite de oliva y ajo", "Pescado", 15.0),
+                new Plato(R.drawable.gambas_al_ajillo, "Gambas al Ajillo", "Gambas salteadas con ajo y guindilla", "Mariscos", 11.0),
+                new Plato(R.drawable.churros_chocolate, "Churros con Chocolate", "Churros fritos con chocolate caliente", "Gluten", 6.0),
+                new Plato(R.drawable.flan_huevo, "Flan de Huevo", "Flan de huevo con caramelo", "Lactosa, Huevos", 4.0),
+                new Plato(R.drawable.tarta_santiago, "Tarta de Santiago", "Tarta de almendra típica gallega", "Frutos Secos, Gluten", 5.0),
+                new Plato(R.drawable.crema_catalana, "Crema Catalana", "Postre de crema con azúcar caramelizado", "Lactosa, Huevos", 5.0),
+                new Plato(R.drawable.filete_ternera, "Filete de Ternera", "Filete de ternera a la plancha con patatas", "Ninguno", 14.0),
+                new Plato(R.drawable.salmon_plancha, "Salmón a la Plancha", "Salmón con verduras salteadas", "Pescado", 13.0),
+                new Plato(R.drawable.canelones, "Canelones", "Canelones rellenos de carne y bechamel", "Gluten, Lactosa", 10.0),
+                new Plato(R.drawable.empanada_gallega, "Empanada Gallega", "Empanada rellena de atún y tomate", "Gluten, Pescado", 7.0)
 
 
         ));
