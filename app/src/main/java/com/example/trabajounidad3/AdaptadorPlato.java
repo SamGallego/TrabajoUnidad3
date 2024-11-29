@@ -41,7 +41,7 @@ public class AdaptadorPlato extends RecyclerView.Adapter<AdaptadorPlato.PlatoVie
         holder.nombre.setText(plato.getNombre());
         holder.descripcion.setText(plato.getDescripcion());
         holder.alergenos.setText(plato.getAlergenos());
-        // En AdaptadorPlato.java, dentro del método onBindViewHolder
+
         holder.precio.setText(String.format("%.2f €", plato.getPrecio()));
 
 

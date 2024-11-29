@@ -78,4 +78,13 @@ public class Plato {
                 ", precio=" + precio +
                 '}';
     }
+
+    // Método de validación
+    public boolean esValido() {
+
+        return foto != 0 && nombre != null && !nombre.trim().isEmpty() &&
+                descripcion != null && !descripcion.trim().isEmpty() &&
+                alergenos != null && !alergenos.trim().isEmpty() &&
+                precio > 0;
+    }
 }
