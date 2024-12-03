@@ -2,6 +2,7 @@ package com.example.trabajounidad3;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -246,6 +247,14 @@ public class MainActivity extends AppCompatActivity {
             actualizarTotal();
             Log.i(TAG, "Orden limpiada");
         });
+
+
+        // Establecer orientación según el sensor del dispositivo
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
+
+
+
+
     }
 
     //Insertar un menu
