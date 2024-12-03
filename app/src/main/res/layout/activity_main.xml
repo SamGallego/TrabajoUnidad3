@@ -9,13 +9,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/carta"
-        android:layout_width="211dp"
-        android:layout_height="706dp"
+        android:layout_width="200dp"
+        android:layout_height="541dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/total"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/iva"
         app:layout_constraintEnd_toStartOf="@+id/pedido"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,10 +23,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pedido"
-        android:layout_width="187dp"
-        android:layout_height="739dp"
+        android:layout_width="165dp"
+        android:layout_height="533dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toTopOf="@+id/total"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,53 +37,78 @@
         android:id="@+id/total"
         android:layout_width="184dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="12dp"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/pedir"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pedido" />
 
     <Switch
         android:id="@+id/iva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="28dp"
         android:height="48dp"
         android:text="@string/iva"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carta" />
 
     <Button
         android:id="@+id/pedir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/pedido"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total" />
 
     <Button
         android:id="@+id/limpiar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/limpiar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pedir" />
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintEnd_toStartOf="@+id/pedir"
+        app:layout_constraintTop_toBottomOf="@+id/total"
+        app:layout_constraintVertical_bias="0.405" />
 
     <Spinner
         android:id="@+id/languages"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintStart_toEndOf="@+id/iva"
+        app:layout_constraintTop_toBottomOf="@+id/carta" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/limpiar"
-        app:layout_constraintStart_toEndOf="@+id/iva" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Main" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Proximamente" />
+
+    </com.google.android.material.tabs.TabLayout>
+
     <!-- android:entries="@array/languages" -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

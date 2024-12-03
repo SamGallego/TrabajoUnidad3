@@ -1,12 +1,19 @@
 package com.example.trabajounidad3;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -18,6 +25,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView totalTextView;
     private Switch ivaSwitch;
     private boolean ivaAplicado = false;
+    private TabLayout tabLayout;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,12 +96,57 @@ public class MainActivity extends AppCompatActivity {
             plato.setPrecioOriginal(plato.getPrecio());
         }
 
+        tabLayout = findViewById(R.id.tabLayout);
+        // Añadir pestañas
+
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+            // Acción al seleccionar una pestaña
+                Log.d("TabLayout", "Tab seleccionada: " + tab.getText());
+                if(tab.getPosition()==1){
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Proximamente", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            // Acción al deseleccionar una pestaña
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            // Acción al volver a seleccionar una pestaña
+            }
+        });
+
+
+
+
+
+
+
+
         // Inicializar vistas
         Spinner spinner = findViewById(R.id.languages);
         Button botonPedir = findViewById(R.id.pedir);
         Button botonLimpiar = findViewById(R.id.limpiar);
         ivaSwitch = findViewById(R.id.iva);
         totalTextView = findViewById(R.id.total);
+
+        //Asocio el menu flotante
+        registerForContextMenu(totalTextView);
+
+//        //Asocio el menu contextual
+//        totalTextView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showPopUpMenu(view);
+//            }
+//        });
+
+
 
         // Inicializar pedido
         pedido = new ArrayList<>();
@@ -175,7 +232,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Botón para realizar pedido
         botonPedir.setOnClickListener(v -> {
-            Toast.makeText(MainActivity.this, "Su pedido ha sido realizado", Toast.LENGTH_SHORT).show();
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Su pedido ha sido realizado", Snackbar.LENGTH_LONG);
+            snackbar.show();
+//            Toast.makeText(MainActivity.this, "Su pedido ha sido realizado", Toast.LENGTH_SHORT).show();
+
             Log.i(TAG, "Orden completada");
         });
 
@@ -187,6 +247,88 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "Orden limpiada");
         });
     }
+
+    //Insertar un menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mi_menu, menu);
+        return true;
+    }
+
+    //Insertar funcionalidades a las opciones
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i;
+        if (item.getItemId() == R.id.item){
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Item pulsado", Snackbar.LENGTH_LONG);
+            snackbar.show();
+
+        }else if (item.getItemId() == R.id.item2){
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Item2 pulsado", Snackbar.LENGTH_LONG);
+            snackbar.show();
+
+        }
+        return true;
+    }
+
+//        // Método para asociar un menú emergente popup al pulsar en una vista
+//    public void showPopUpMenu(View view) {
+//        PopupMenu popupMenu = new PopupMenu(this,view);
+//        MenuInflater menuInflater = popupMenu.getMenuInflater();
+//        menuInflater.inflate(R.menu.mi_menu, popupMenu.getMenu());
+//
+//        // Manejador de clicks
+//        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//
+//                Intent i;
+//                if (item.getItemId() == R.id.item){
+//                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Item recontrapulsado", Snackbar.LENGTH_LONG);
+//                    snackbar.show();
+//
+//                }else if (item.getItemId() == R.id.item2){
+//                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Item2 recontrapulsado", Snackbar.LENGTH_LONG);
+//                    snackbar.show();
+//
+//                }
+//                return true;
+//            }
+//        });
+//
+//        popupMenu.show();
+//    }
+
+
+
+
+     //Método para el menú contextual, donde sew asocia el menú contrextual al textView
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        menu.setHeaderTitle("Elija la divisa");
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mi_menu, menu);
+    }
+
+    // Método para gestionar los eventos de los elementos del menú contextual
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        Intent i;
+        if (item.getItemId() == R.id.item) {
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Item pulsado", Snackbar.LENGTH_LONG);
+            snackbar.show();
+
+        } else if (item.getItemId() == R.id.item2) {
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Item2 pulsado", Snackbar.LENGTH_LONG);
+            snackbar.show();
+
+        }
+        return true;
+    }
+
 
     // Método para aplicar el IVA
     private void aplicarIva() {
@@ -265,5 +407,7 @@ public class MainActivity extends AppCompatActivity {
         // Reiniciar la actividad para aplicar el cambio de idioma
         recreate();
     }
+
+
 
 }
