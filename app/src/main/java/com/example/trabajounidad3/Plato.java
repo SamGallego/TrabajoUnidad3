@@ -1,7 +1,8 @@
 package com.example.trabajounidad3;
 
-public class Plato {
+import java.io.Serializable;
 
+public class Plato implements Serializable {
     private int foto;
     private String nombre;
     private String descripcion;
@@ -18,6 +19,7 @@ public class Plato {
         this.precioOriginal = precio;
     }
 
+    // Getters y setters
     public int getFoto() {
         return foto;
     }
@@ -58,24 +60,11 @@ public class Plato {
         this.precio = precio;
     }
 
-    // Método para obtener el precio original
     public double getPrecioOriginal() {
         return precioOriginal;
     }
 
-    // Método para establecer el precio original
     public void setPrecioOriginal(double precioOriginal) {
         this.precioOriginal = precioOriginal;
-    }
-
-    @Override
-    public String toString() {
-        return "Plato{" +
-                "foto=" + foto +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", alergenos='" + alergenos + '\'' +
-                ", precio=" + precio +
-                '}';
     }
 }

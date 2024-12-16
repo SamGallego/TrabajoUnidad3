@@ -7,30 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/carta"
-        android:layout_width="211dp"
-        android:layout_height="706dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/total"
-        app:layout_constraintEnd_toStartOf="@+id/pedido"
+    <FrameLayout
+        android:id="@+id/fragmentoCarta"
+        android:layout_width="215dp"
+        android:layout_height="635dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pedido"
-        android:layout_width="187dp"
-        android:layout_height="739dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="184dp"
+        android:layout_height="610dp"
         app:layout_constraintBottom_toTopOf="@+id/total"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/carta"
+        app:layout_constraintStart_toEndOf="@+id/fragmentoCarta"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
