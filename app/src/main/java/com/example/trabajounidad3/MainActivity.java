@@ -1,35 +1,28 @@
 package com.example.trabajounidad3;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    private ArrayList<Plato> pedido;
-    private AdaptadorPedido adaptadorPedido;
-    private TextView totalTextView;
-    private Switch ivaSwitch;
-    private boolean ivaAplicado = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,137 +39,45 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Inicializar vistas
-        Spinner spinner = findViewById(R.id.languages);
-        Button botonPedir = findViewById(R.id.pedir);
-        Button botonLimpiar = findViewById(R.id.limpiar);
-        ivaSwitch = findViewById(R.id.iva);
-        totalTextView = findViewById(R.id.total);
+        BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
+        Menu menu = bottomNavigationView.getMenu();
+        menu.add(Menu.NONE,1,Menu.NONE,"Carta").setIcon(android.R.drawable.ic_menu_myplaces);
+        menu.add(Menu.NONE,2,Menu.NONE,"Proximamente").setIcon(android.R.drawable.ic_menu_my_calendar);
+        menu.add(Menu.NONE,3,Menu.NONE,"Proximamente").setIcon(android.R.drawable.ic_menu_mylocation);
 
-        // Inicializar pedido
-        pedido = new ArrayList<>();
-        RecyclerView recyclerViewPedido = findViewById(R.id.pedido);
-        recyclerViewPedido.setLayoutManager(new LinearLayoutManager(this));
-        adaptadorPedido = new AdaptadorPedido(pedido);
-        recyclerViewPedido.setAdapter(adaptadorPedido);
 
-        // Configurar Spinner de idiomas
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, R.array.languages, android.R.layout.simple_spinner_item
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        setLocale("en");
-                        break;
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragmento = null;
+
+                switch (item.getItemId()) {
                     case 1:
-                        setLocale("es");
+                        fragmento = new MiFragmento();
                         break;
                     case 2:
-                        setLocale("gl");
+                        fragmento = new MiFragmento2();
+                        break;
+                    case 3:
+                        fragmento = new MiFragmento3();
                         break;
                 }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // No hacer nada
-            }
-        });
-
-        // Listener del Switch IVA
-        ivaSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                aplicarIva();
-                Toast.makeText(MainActivity.this, "IVA aplicado", Toast.LENGTH_SHORT).show();
-            } else {
-                quitarIva();
-                Toast.makeText(MainActivity.this, "IVA desactivado", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Botón para realizar pedido
-        botonPedir.setOnClickListener(v -> {
-            Toast.makeText(MainActivity.this, "Su pedido ha sido realizado", Toast.LENGTH_SHORT).show();
-            Log.i(TAG, "Orden completada");
-        });
-
-        // Botón para limpiar el pedido
-        botonLimpiar.setOnClickListener(v -> {
-            pedido.clear();
-            adaptadorPedido.notifyDataSetChanged();
-            actualizarTotal();
-            Log.i(TAG, "Orden limpiada");
-        });
-
-        // Configurar listener para recibir datos del Fragment
-        getSupportFragmentManager().setFragmentResultListener("platoSeleccionado", this, (requestKey, result) -> {
-            if (result.containsKey("plato")) {
-                Plato plato = (Plato) result.getSerializable("plato");
-                if (plato != null) {
-                    agregarPlatoAPedido(plato);
+                if (fragmento != null) {
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragmentContainerView, fragmento);
+                    transaction.commit();
                 }
+                return true;
             }
         });
 
-        // Cargar el fragmento
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentoCarta, new MiFragmento())
-                .commit();
+
+        bottomNavigationView.setSelectedItemId(1);
+
+
+
     }
 
-    private void agregarPlatoAPedido(Plato plato) {
-        pedido.add(plato);
-        adaptadorPedido.notifyDataSetChanged();
-        actualizarTotal();
-        Toast.makeText(this, plato.getNombre() + " añadido al pedido", Toast.LENGTH_SHORT).show();
-    }
 
-    private void aplicarIva() {
-        if (!ivaAplicado) {
-            for (Plato plato : pedido) {
-                plato.setPrecio(plato.getPrecioOriginal() * 1.10);
-            }
-            ivaAplicado = true;
-            adaptadorPedido.notifyDataSetChanged();
-            actualizarTotal();
-        }
-    }
-
-    private void quitarIva() {
-        if (ivaAplicado) {
-            for (Plato plato : pedido) {
-                plato.setPrecio(plato.getPrecioOriginal());
-            }
-            ivaAplicado = false;
-            adaptadorPedido.notifyDataSetChanged();
-            actualizarTotal();
-        }
-    }
-
-    private void actualizarTotal() {
-        double total = 0;
-        for (Plato plato : pedido) {
-            total += plato.getPrecio();
-        }
-        totalTextView.setText(String.format("Total: %.2f €", total));
-    }
-
-    private void setLocale(String lang) {
-        String currentLang = getResources().getConfiguration().locale.getLanguage();
-        if (!currentLang.equals(lang)) {
-            Locale locale = new Locale(lang);
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-            recreate();
-        }
-    }
 }
